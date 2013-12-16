@@ -24,8 +24,10 @@ TableView = (tabGroup) ->
         url: e.rowData.subSite
         item: e.rowData
 
-      Ti.UI.currentTab.open(details, { animated: true })
-      #tabGroup.activeTab.open(details, {animated: true })
+      if Ti.Platform.name == 'android'
+        tabGroup.activeTab.open(details, {animated: true })
+      else
+        Ti.UI.currentTab.open(details, { animated: true })
 
   table
 
