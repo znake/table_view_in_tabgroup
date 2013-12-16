@@ -11,8 +11,13 @@ TableView = (tabGroup) ->
     price: "2.50"
   ]
 
+  if Ti.Platform.name == 'android'
+    subSite = "ui/test/test1_detail.js"
+  else
+    subSite = "test1_detail.js"
+
   tableData.map (item) ->
-    item['subSite']  = "test1_detail.js"
+    item['subSite']  = subSite
     item['hasChild'] = true
 
   table = Ti.UI.createTableView(data: tableData)
