@@ -1,5 +1,6 @@
 TableView = (tabGroup) ->
 
+
   tableData = [
     title: "Apples"
     price: "1.25"
@@ -11,28 +12,17 @@ TableView = (tabGroup) ->
     price: "2.50"
   ]
 
-  if Ti.Platform.name == 'android'
-    subSite = "ui/test/test1_detail.js"
-  else
-    subSite = "test1_detail.js"
-
   tableData.map (item) ->
-    item['subSite']  = subSite
     item['hasChild'] = true
 
   table = Ti.UI.createTableView(data: tableData)
 
   table.addEventListener "click", (e) ->
-    if e.rowData.subSite
-      details = Ti.UI.createWindow
-        title: "Detail Test"
-        url: e.rowData.subSite
-        item: e.rowData
+    if e.rowData.hasChild
+      DetailWindow = require('ui/test/test1_detail')
+      details = new DetailWindow(e.rowData)
 
-      if Ti.Platform.name == 'android'
-        tabGroup.activeTab.open(details, {animated: true })
-      else
-        Ti.UI.currentTab.open(details, { animated: true })
+      tabGroup.activeTab.open(details, {animated: true })
 
   table
 

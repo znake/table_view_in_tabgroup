@@ -1,11 +1,18 @@
-win = Ti.UI.currentWindow
+DetailWindow = (item) ->
 
-view = Ti.UI.createView
-   backgroundColor: 'white'
+  win = Ti.UI.createWindow
+    title: "Detail Test"
+  
+  view = Ti.UI.createView
+     backgroundColor: 'white'
 
-priceLabel = Ti.UI.createLabel
-  text: "price: #{win.item.price}"
+  priceLabel = Ti.UI.createLabel
+    text: "price: #{item.price}"
 
-view.add(priceLabel)
+  view.add(priceLabel)
 
-win.add(view)
+  win.add(view)
+
+  win
+
+module.exports = DetailWindow
